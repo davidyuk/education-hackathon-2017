@@ -21,7 +21,7 @@ contract EducationRegistry {
 
   address owner;
   mapping(address => EducationalInstitution) public educationalInstitutions;
-  Student[] internal students;
+  mapping(uint => Student) internal students;
 
   modifier onlyOwner {
     require(msg.sender == owner);
@@ -45,13 +45,7 @@ contract EducationRegistry {
     educationalInstitutions[eiAddress].isDisabled = true;
   }
 
-  function createStudent() public onlyOwner returns (uint) {
-    require(students.length + 1 > students.length); // really?
-    students.length = students.length + 1;
-    return students.length - 1;
-  }
-
-  function addSkill(uint studentIdx, string _name, SkillType _skillType) public {
+  function addSkill(uint studentId, string _name, SkillType _skillType) public {
     EducationalInstitution memory ei = educationalInstitutions[msg.sender];
     require(!ei.isDisabled);
     require(bytes(ei.name).length != 0);
@@ -60,15 +54,15 @@ contract EducationRegistry {
       skillTypeValid = _skillType == ei.skillTypes[i];
     }
     require(skillTypeValid);
-    students[studentIdx].skills.push(Skill({ name: _name, skillType: _skillType, educationalInstitution: msg.sender }));
+    students[studentId].skills.push(Skill({ name: _name, skillType: _skillType, educationalInstitution: msg.sender }));
   }
 
-  function getStudentSkill(uint studentIdx, uint skillIdx) public constant returns (string, SkillType, address) {
-    Skill memory skill = students[studentIdx].skills[skillIdx];
+  function getStudentSkill(uint studentId, uint skillIdx) public constant returns (string, SkillType, address) {
+    Skill memory skill = students[studentId].skills[skillIdx];
     return (skill.name, skill.skillType, skill.educationalInstitution);
   }
 
-  function getStudentSkillCount(uint studentIdx) public constant returns (uint) {
-    return students[studentIdx].skills.length;
+  function getStudentSkillCount(uint studentId) public constant returns (uint) {
+    return students[studentId].skills.length;
   }
 }

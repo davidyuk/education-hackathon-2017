@@ -9,6 +9,7 @@ const testName = 'test_educational_institution_name';
 const testSkillName = 'test_skill_name';
 const testSkillTypes = [1, 2];
 const testSkillType = 1;
+const testStudentId = +'0914397633';
 
 contract('EducationRegistry', (accounts) => {
   it('can\'t add education institution by not the owner', () =>
@@ -41,28 +42,18 @@ contract('EducationRegistry', (accounts) => {
         .then(() => instance.educationalInstitutions(testAddress))
         .then(([, isDisabled]) => assert.equal(isDisabled, true))));
 
-  it('can\'t create student by not the owner', () =>
-    EducationRegistry.deployed()
-      .then(instance => instance.createStudent({ from: accounts[1] }))
-      .then(assert.fail, assertError));
-
-  it('creates student', () =>
-    EducationRegistry.deployed().then(instance => instance.createStudent()));
-
   it('can\'t add skill by not the educational institution', () =>
-    EducationRegistry.deployed().then(instance => instance.createStudent()
-      .then(() => instance.addSkill(0, testSkillName, testSkillType, { from: accounts[1] }))
-      .then(assert.fail, assertError)));
+    EducationRegistry.deployed().then(instance =>
+      instance.addSkill(testStudentId, testSkillName, testSkillType, { from: accounts[1] })
+        .then(assert.fail, assertError)));
 
   it('can\'t add skill if the educational institution is disabled', () =>
-    EducationRegistry.deployed().then(instance =>
-      Promise.all([
-        instance.createStudent(),
-        instance.addEducationalInstitution(accounts[1], testName, testSkillTypes)
-          .then(() => instance.disableEducationalInstitution(accounts[1])),
-      ])
-        .then(() => instance.addSkill(0, testSkillName, testSkillType, { from: accounts[1] }))
-        .then(assert.fail, assertError)));
+    EducationRegistry.deployed()
+      .then(instance => instance.addEducationalInstitution(accounts[1], testName, testSkillTypes)
+        .then(() => instance.disableEducationalInstitution(accounts[1]))
+        .then(() => instance.addSkill(
+          testStudentId, testSkillName, testSkillType, { from: accounts[1] })))
+      .then(assert.fail, assertError));
 
   it('can\'t add skill if the educational institution don\'t corresponds to requested skill type', () =>
     EducationRegistry.deployed().then(instance =>
@@ -72,14 +63,13 @@ contract('EducationRegistry', (accounts) => {
 
   it('adding skill', () =>
     EducationRegistry.deployed().then(instance =>
-      Promise.all([
-        instance.createStudent(),
-        instance.addEducationalInstitution(accounts[1], testName, testSkillTypes),
-      ])
-        .then(() => instance.addSkill(0, testSkillName, testSkillType, { from: accounts[1] }))
+      instance.addEducationalInstitution(accounts[1], testName, testSkillTypes)
+        .then(() => instance.addSkill(
+          testStudentId, testSkillName, testSkillType, { from: accounts[1] }))
         .then(() => Promise.all([
-          instance.getStudentSkillCount(0).then(skillCount => assert.equal(skillCount, 1)),
-          instance.getStudentSkill(0, 0)
+          instance.getStudentSkillCount(testStudentId)
+            .then(skillCount => assert.equal(skillCount, 1)),
+          instance.getStudentSkill(testStudentId, 0)
             .then(([skillName, skillType, eiAddress]) => {
               assert.equal(skillName, testSkillName);
               assert.equal(skillType, testSkillType);
