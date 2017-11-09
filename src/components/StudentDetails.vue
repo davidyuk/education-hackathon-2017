@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import skillTypeNames from '../skillTypeNames';
+//  import skillTypeNames from '../skillTypeNames';
 
   export default {
     data() {
