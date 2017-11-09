@@ -9,7 +9,7 @@
         </el-form-item>
 
         <el-form-item label="Вид документа">
-          <el-select placeholder="Выберите вид документа" style="width: 100%">
+          <el-select v-model="skill.skillTypes" placeholder="Выберите вид документа" style="width: 100%">
             <el-option label="Среднее образование" value="0"></el-option>
             <el-option label="Бакалавриат" value="1"></el-option>
             <el-option label="Магистратура" value="2"></el-option>
@@ -38,7 +38,9 @@
     data() {
       return {
         msg: '',
-        skill: '',
+        skill: {
+          skillTypes: '',
+        },
       };
     },
   };

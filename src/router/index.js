@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import MainComponent from '@/components/MainComponent.vue';
 import InstitutionalComponent from '@/components/InstitutionalComponent.vue';
+import AdminComponent from '@/components/AdminComponent.vue';
 
 Vue.use(Router);
 
@@ -16,6 +17,11 @@ export default new Router({
       path: '/institution',
       name: 'InstitutionalComponent',
       component: InstitutionalComponent,
+    },
+    {
+      path: '/admin',
+      name: 'AdminComponent',
+      component: AdminComponent,
     },
   ],
 });
