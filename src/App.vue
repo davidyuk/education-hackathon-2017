@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view/>
+  <el-row>
+      <el-col :xs="2" :sm="4" :md="6" :lg="7" :xl="8">&nbsp;</el-col>
+      <el-col :xs="20" :sm="16" :md="12" :lg="10" :xl="8" class=""><router-view /></el-col>
+    </el-row>
   </div>
 </template>
 
