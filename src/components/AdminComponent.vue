@@ -31,7 +31,7 @@
 
 <script>
   export default {
-    name: 'MainComponent',
+    name: 'AdminComponent',
     data() {
       return {
         greeting: '',
