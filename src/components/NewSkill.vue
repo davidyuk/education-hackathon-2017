@@ -2,29 +2,27 @@
   <div class="main">
 
     <el-form label-width="250px" class="id-input-form">
-      <el-col :span="12" :offset="6">
 
-        <el-form-item label="Название образовательного учереждения" class="input-div">
-          <el-input type="text" class="id-input" placeholder="Введите серию и номер пасспорта">
-          </el-input>
-        </el-form-item>
+      <el-form-item label="Название образовательного учереждения" class="input-div">
+        <el-input type="text" class="id-input" placeholder="Введите серию и номер пасспорта">
+        </el-input>
+      </el-form-item>
 
-        <el-form-item label="Виды выдаваемых сертификатов">
-          <el-select v-model="educationalInstitution.skillTypes" multiple placeholder="Выберите виды выдаваемых сертификатов" style="width: 100%">
-            <el-option
-              v-for="item in skillTypes"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </el-form-item>
+      <el-form-item label="Виды выдаваемых сертификатов">
+        <el-select v-model="educationalInstitution.skillTypes" multiple placeholder="Выберите виды выдаваемых сертификатов" style="width: 100%">
+          <el-option
+            v-for="item in skillTypes"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </el-form-item>
 
-        <el-form-item>
-          <el-button type="primary">Загрузить</el-button>
-        </el-form-item>
+      <el-form-item>
+        <el-button type="primary">Загрузить</el-button>
+      </el-form-item>
 
-      </el-col>
     </el-form>
 
   </div>
