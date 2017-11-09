@@ -1,0 +1,58 @@
+<template>
+  <div class="main">
+    <el-form label-width="250px" class="id-input-form">
+      <el-form-item label="Название образовательного учереждения" class="input-div">
+        <el-input type="text" class="id-input" placeholder="Введите серию и номер пасспорта">
+        </el-input>
+      </el-form-item>
+
+      <el-form-item label="Виды выдаваемых сертификатов">
+        <el-select v-model="educationalInstitution.skillTypes" multiple placeholder="Выберите виды выдаваемых сертификатов" style="width: 100%">
+          <el-option
+            v-for="item in skillTypes"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </el-form-item>
+
+      <el-form-item>
+        <el-button type="primary">Загрузить</el-button>
+      </el-form-item>
+    </el-form>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        greeting: '',
+        about: '',
+        isDisabled: '',
+        educationalInstitution: { name: '',
+          skillTypes: [],
+        },
+        skillTypes: [
+          {
+            value: '0',
+            label: 'Среднее образование',
+          },
+          {
+            value: '1',
+            label: 'Бакалавриат',
+          },
+          {
+            value: '2',
+            label: 'Магистратура',
+          },
+          {
+            value: '3',
+            label: 'Другие виды образования',
+          },
+        ],
+      };
+    },
+  };
+</script>
