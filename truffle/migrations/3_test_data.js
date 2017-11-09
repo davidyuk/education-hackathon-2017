@@ -6,7 +6,7 @@ module.exports = (deployer, environment, accounts) => {
   deployer.then(() => EducationRegistry.deployed()
     .then(instance => Promise.all([
       instance.addEducationalInstitution(accounts[9], 'Центр дополнительного образования "Вектор"', [3])
-      .then(() => instance.disableEducationalInstitution(accounts[4])),
+      .then(() => instance.disableEducationalInstitution(accounts[9])),
       instance.addEducationalInstitution(accounts[4], 'Шахматный клуб "Росток"', [3]),
         // .then(() => instance.disableEducationalInstitution(accounts[4])),
       instance.addEducationalInstitution(accounts[5], 'Гимназия №1 г. Владивосток', [0]),
@@ -24,6 +24,6 @@ module.exports = (deployer, environment, accounts) => {
           .then(() => instance.addSkill(914397635, 'Выпускник по специальности Восточная Философия.', 1, { from: accounts[6] }))
           .then(() => instance.addSkill(914397635, 'Права категории "Б"', 3, { from: accounts[8] }))
           .then(() => instance.addSkill(914397635, 'Выпускник курсов по Английскому. Сдан IELTS на балл 6.5.', 3, { from: accounts[7] }))
-        .then(() => instance.addSkill(914397635, 'Выпускник по специальности Политология.', 2, { from: accounts[7] })),
+          .then(() => instance.addSkill(914397635, 'Выпускник по специальности Политология.', 2, { from: accounts[7] })),
       ]))));
 };
