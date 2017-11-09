@@ -23,19 +23,31 @@
 
   export default {
     data() {
-      return { studentId: '' };
+      return {
+        studentId: '',
+        skills() {
+          return [
+            skillTypeNames.map((name, idx) => ({ heading: name, skillType: idx })),
+            ...this.$store.state.education.student.skills,
+          ]
+            .sort((a, b) => a.skillType - b.skillType || !!a.heading - !!b.heading)
+            .filter((skill, idx, array) =>
+              (skill.heading && array[idx + 1] && array[idx + 1].skillType === skill.skillType)
+              || !skill.heading);
+        },
+      };
     },
     computed: {
-      skills() {
-        return [
-          skillTypeNames.map((name, idx) => ({ heading: name, skillType: idx })),
-          ...this.$store.state.education.student.skills,
-        ]
-          .sort((a, b) => a.skillType - b.skillType || !!a.heading - !!b.heading)
-          .filter((skill, idx, array) =>
-          (skill.heading && array[idx + 1] && array[idx + 1].skillType === skill.skillType)
-          || !skill.heading);
-      },
+//      skills() {
+//        return [
+//          skillTypeNames.map((name, idx) => ({ heading: name, skillType: idx })),
+//          ...this.$store.state.education.student.skills,
+//        ]
+//          .sort((a, b) => a.skillType - b.skillType || !!a.heading - !!b.heading)
+//          .filter((skill, idx, array) =>
+//          (skill.heading && array[idx + 1] && array[idx + 1].skillType === skill.skillType)
+//          || !skill.heading);
+//      },
     },
     methods: {
       fetchStudent() {
