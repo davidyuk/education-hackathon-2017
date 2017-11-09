@@ -4,7 +4,7 @@ import Vue from 'vue';
 import { Button, Select, Row, Col, Table, Form, FormItem, Input, TableColumn, Option, Switch } from 'element-ui';
 
 import 'element-ui/lib/theme-chalk/index.css';
-import App from './App.vue';
+import App from './App';
 import router from './router';
 
 Vue.config.productionTip = false;

@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import MainComponent from '@/components/MainComponent.vue';
-import InstitutionalComponent from '@/components/InstitutionalComponent.vue';
-import AdminComponent from '@/components/AdminComponent.vue';
-import AddInstitutionComponent from '@/components/AddInstitutionComponent.vue';
+import MainComponent from '@/components/MainComponent';
+import InstitutionalComponent from '@/components/InstitutionalComponent';
+import AdminComponent from '@/components/AdminComponent';
+import AddInstitutionComponent from '@/components/AddInstitutionComponent';
 
 
 Vue.use(Router);
