@@ -8,3 +8,10 @@
 export default {
 };
 </script>
+
+<style lang="scss" scoped>
+  #app {
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+  }
+</style>
