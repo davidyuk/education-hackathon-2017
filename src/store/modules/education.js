@@ -63,8 +63,8 @@ export default {
                 const { name, isDisabled } = await educationRegistry.methods
                   .educationalInstitutions(account).call();
                 if (name) {
-                  const skillTypes = await educationRegistry.methods
-                    .getEducationalInstitutionSkillTypes(account).call();
+                  const skillTypes = (await educationRegistry.methods
+                    .getEducationalInstitutionSkillTypes(account).call()).map(i => +i);
                   commit('setEducationalInstitution', { name, isDisabled, skillTypes });
                   commit('setRoute', 'new-skill');
                 } else {
@@ -94,8 +94,9 @@ export default {
               })));
       commit('setSkills', skills);
     },
-    addSkill({ state }, { studentId, name, type }) {
-      educationRegistry.methods.addSkill(studentId, name, type).send({ from: state.account });
+    addSkill({ state }, { studentId, name, skillType }) {
+      console.log(studentId, name, skillType);
+      educationRegistry.methods.addSkill(studentId, name, skillType).send({ from: state.account });
     },
     addEducationalInstitution({ state }, { address, name, skillTypes }) {
       educationRegistry.methods
