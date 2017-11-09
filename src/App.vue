@@ -8,8 +8,16 @@
 </template>
 
 <script>
-export default {
-};
+  export default {
+    async beforeCreate() {
+      await this.$store.dispatch('init');
+      this.$router.replace({ name: this.$store.state.education.route });
+      this.$store.watch(
+        state => state.education.route,
+        route => this.$router.replace({ name: route }),
+      );
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
