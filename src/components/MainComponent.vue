@@ -25,21 +25,7 @@
 </template>
 
 <script>
-//  import ElCol from 'element-ui/packages/col/src/col';
-//  import ElInput from '../../node_modules/element-ui/packages/input/src/input.vue';
-//  import ElButton from '../../node_modules/element-ui/packages/button/src/button.vue';
-//  import ElFormItem from '../../node_modules/element-ui/packages/form/src/form-item.vue';
-//  import ElForm from '../../node_modules/element-ui/packages/form/src/form.vue';
-//  import ElTable from '../../node_modules/element-ui/packages/table/src/table.vue';
-
   export default {
-//    components: {
-//      ElTable,
-//      ElForm,
-//      ElFormItem,
-//      ElButton,
-//      ElCol,
-//      ElInput },
     name: 'MainComponent',
     data() {
       return {
