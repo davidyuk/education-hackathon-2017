@@ -19,7 +19,7 @@ contract EducationRegistry {
     Skill[] skills;
   }
 
-  address owner;
+  address public owner;
   mapping(address => EducationalInstitution) public educationalInstitutions;
   mapping(uint => Student) internal students;
 

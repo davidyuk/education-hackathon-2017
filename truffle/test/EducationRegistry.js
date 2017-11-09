@@ -12,6 +12,11 @@ const testSkillType = 1;
 const testStudentId = +'0914397633';
 
 contract('EducationRegistry', (accounts) => {
+  it('returns owner', () =>
+    EducationRegistry.deployed()
+      .then(instance => instance.owner())
+      .then(owner => assert.equal(owner, accounts[0])));
+
   it('can\'t add education institution by not the owner', () =>
     EducationRegistry.deployed()
       .then(instance => instance.addEducationalInstitution(
